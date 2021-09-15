@@ -13,6 +13,6 @@ functions:
   echo:
     handler: src/index.handler
     events:
-      - httpApi:
+      - http:
           path: /echo
           method: post
