@@ -1,6 +1,7 @@
-exports.handler = (event) => {
+exports.handler = async (event) => {
 	const { message } = event.body;
-	console.log(message);
+	await asyncJobSimulation();
+
 	const response = {
 		statusCode: 200,
 		headers: {
@@ -12,3 +13,13 @@ exports.handler = (event) => {
 
 	return response;
 };
+
+function asyncJobSimulation() {
+	return new Promise((resolve, reject) => {
+		if (1 === 1) {
+			resolve();
+		} else {
+			reject();
+		}
+	});
+}
