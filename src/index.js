@@ -1,4 +1,4 @@
-exports.handler = async (event) => {
+exports.handler = (event) => {
 	console.log(event.body);
 	const { message } = event.body;
 
