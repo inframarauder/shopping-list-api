@@ -1,12 +1,11 @@
 exports.handler = (event) => {
-	console.log(event.body);
 	const { message } = event.body;
-
+	console.log(message);
 	const response = {
-		isBase64Encoded: false,
 		statusCode: 200,
 		headers: {
 			"Content-Type": "application/json",
+			"Access-Control-Allow-Origin": "*",
 		},
 		body: JSON.stringify(message),
 	};
