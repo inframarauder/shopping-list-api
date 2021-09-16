@@ -5,7 +5,7 @@ const TableName = process.env.DYNAMODB_TABLE;
 
 exports.handler = async (event) => {
 	try {
-		console.log(event.queryStringParameters);
+		const { queryStringParameters } = event;
 
 		let data = await db.list(TableName);
 
@@ -16,6 +16,27 @@ exports.handler = async (event) => {
 
 			return bDate - aDate;
 		});
+
+		if (queryStringParameters) {
+			data = data.filter((item) => {
+				let condition = true;
+
+				if (queryStringParameters.itemName) {
+					condition =
+						condition &&
+						item.itemName.toLowerCase() ===
+							queryStringParameters.itemName.toLowerCase();
+				}
+
+				if (queryStringParameters.purchased) {
+					queryStringParameters.purchased = "false" ? false : true;
+					condition =
+						condition && item.purchased === queryStringParameters.purchased;
+				}
+
+				return condition;
+			});
+		}
 
 		return Responses._200({ message: "List of items", data });
 	} catch (error) {
