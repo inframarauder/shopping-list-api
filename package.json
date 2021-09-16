@@ -4,8 +4,7 @@
   "description": "Simple serverless REST API using AWS Lambda, DynamoDB, API Gateway and Serverless framework.",
   "main": "index.js",
   "dependencies": {
-    "aws-sdk": "^2.989.0",
-    "uuid": "^8.3.2"
+    "aws-sdk": "^2.989.0"
   },
   "devDependencies": {},
   "scripts": {

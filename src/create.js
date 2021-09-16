@@ -17,7 +17,7 @@ exports.handler = async (event) => {
 			createdAt: timestamp,
 			updatedAt: timestamp,
 		},
-		ReturnValues: "ALL_NEW",
+		ReturnValues: "ALL_OLD",
 	};
 	try {
 		const data = await client.put(params).promise();
