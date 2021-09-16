@@ -10,6 +10,7 @@ provider:
   region: ap-south-1
   environment:
     DYNAMODB_TABLE: ${self:service}-${sls:stage}
+    REGION: ${sls:region}
   http:
     cors: true
   iam:
@@ -26,12 +27,18 @@ provider:
           Resource: "arn:aws:dynamodb:${aws:region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
 functions:
-  echo:
+  health:
     handler: src/index.handler
     events:
       - http:
           path: /
           method: get
+  create:
+    handler: src/create.handler
+    events:
+      - http:
+          path: /create
+          method: post
 
 resources:
   Resources:
