@@ -17,7 +17,7 @@ exports.handler = async (event) => {
 		ReturnValues: "ALL_NEW",
 	};
 	try {
-		const response = await client.putItem(params);
+		const response = await client.put(params);
 		return new Response(200, response);
 	} catch (error) {
 		console.error("Error in create", error);
