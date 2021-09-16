@@ -5,7 +5,7 @@ const TableName = process.env.DYNAMODB_TABLE;
 
 exports.handler = async (event) => {
 	try {
-		const data = await db.list(TableName);
+		let data = await db.list(TableName);
 
 		//sorting records in descending order of createdAt
 		data = data.sort((a, b) => {
