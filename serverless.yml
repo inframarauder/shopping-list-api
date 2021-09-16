@@ -30,8 +30,8 @@ functions:
     handler: src/index.handler
     events:
       - http:
-          path: /echo
-          method: post
+          path: /
+          method: get
 
 resources:
   Resources:
