@@ -1,6 +1,6 @@
 {
 	"Table": {
-		"TableName": "shopping-list-api-prod",
+		"TableName": "shopping-list-table",
 		"KeySchema": [
 			{
 				"AttributeName": "_id",

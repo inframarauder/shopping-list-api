@@ -9,7 +9,7 @@ provider:
   stage: prod
   region: ap-south-1
   environment:
-    DYNAMODB_TABLE: ${self:service}-${sls:stage}
+    DYNAMODB_TABLE: shopping-list-table
     REGION: ${aws:region}
   http:
     cors: true
