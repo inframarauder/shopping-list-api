@@ -39,7 +39,7 @@ functions:
       - http:
           path: /
           method: get
-   list:
+  list:
     handler: src/list.handler
     events:
       - http:
@@ -51,7 +51,6 @@ functions:
       - http:
           path: /create
           method: post
- 
 
 resources:
   Resources:
