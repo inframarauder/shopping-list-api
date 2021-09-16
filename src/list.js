@@ -8,7 +8,7 @@ exports.handler = async (event) => {
 		const data = await db.list(TableName);
 
 		//sorting records in descending order of createdAt
-		data.sort((a, b) => {
+		data = data.sort((a, b) => {
 			const aDate = new Date(a.createdAt);
 			const bDate = new Date(b.createdAt);
 

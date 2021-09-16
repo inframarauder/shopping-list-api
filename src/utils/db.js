@@ -1,5 +1,4 @@
 const AWS = require("aws-sdk");
-const { error } = require("console");
 
 AWS.config.update({
 	region: process.env.REGION || "ap-south-1",
