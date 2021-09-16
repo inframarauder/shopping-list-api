@@ -17,8 +17,9 @@ exports.handler = async (event) => {
 		ReturnValues: "ALL_NEW",
 	};
 	try {
-		const response = await client.put(params);
-		return new Response(200, response);
+		const data = await client.put(params);
+		const serializedData = JSON.parse(data.Attributes);
+		return new Response(200, JSON.stringify(serializedData));
 	} catch (error) {
 		console.error("Error in create", error);
 		return new Response(500, error);
