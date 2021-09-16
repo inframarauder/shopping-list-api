@@ -44,8 +44,6 @@ resources:
             AttributeType: S
           - AttributeName: itemName
             AttributeType: S
-          - AttributeName: purchased
-            AttributeType: N
         KeySchema:
           - AttributeName: itemId
             KeyType: HASH
