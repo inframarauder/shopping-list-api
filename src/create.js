@@ -14,7 +14,7 @@ exports.handler = async (event) => {
 		updatedAt: timestamp,
 	};
 	try {
-		const item = await db.write(data, TableName);
+		const item = await db.create(data, TableName);
 		if (!item) {
 			return Responses._400({ message: "Could not create item" });
 		} else {

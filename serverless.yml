@@ -39,12 +39,19 @@ functions:
       - http:
           path: /
           method: get
+   list:
+    handler: src/list.handler
+    events:
+      - http:
+          path: /list
+          method: get
   create:
     handler: src/create.handler
     events:
       - http:
           path: /create
           method: post
+ 
 
 resources:
   Resources:
