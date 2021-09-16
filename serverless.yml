@@ -26,6 +26,12 @@ provider:
             - dynamodb:DeleteItem
           Resource: "arn:aws:dynamodb:${aws:region}:*:table/${self:provider.environment.DYNAMODB_TABLE}"
 
+plugins:
+  - serverless-webpack
+
+package:
+  individually: true
+
 functions:
   health:
     handler: src/index.handler
@@ -47,12 +53,12 @@ resources:
       DeletionPolicy: Retain
       Properties:
         AttributeDefinitions:
-          - AttributeName: itemId
+          - AttributeName: _id
             AttributeType: S
           - AttributeName: itemName
             AttributeType: S
         KeySchema:
-          - AttributeName: itemId
+          - AttributeName: _id
             KeyType: HASH
           - AttributeName: itemName
             KeyType: RANGE

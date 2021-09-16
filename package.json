@@ -3,10 +3,12 @@
   "version": "1.0.0",
   "description": "Simple serverless REST API using AWS Lambda, DynamoDB, API Gateway and Serverless framework.",
   "main": "index.js",
-  "dependencies": {
-    "aws-sdk": "^2.989.0"
+  "dependencies": {},
+  "devDependencies": {
+    "aws-sdk": "^2.989.0",
+    "serverless-webpack": "^5.5.4",
+    "webpack": "^5.52.1"
   },
-  "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },

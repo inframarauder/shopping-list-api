@@ -1,31 +1,26 @@
-const parseBody = require("./utils/parseBody");
 const generateId = require("./utils/generateId");
-const Response = require("./utils/response");
-const AWS = require("aws-sdk");
+const Responses = require("./utils/responses");
+const db = require("./utils/db");
 
-const client = new AWS.DynamoDB.DocumentClient();
+const TableName = process.env.DYNAMODB_TABLE;
+const timestamp = new Date().toISOString();
 
 exports.handler = async (event) => {
-	const { body } = parseBody(event);
-	const timestamp = new Date().toISOString();
-	const params = {
-		TableName: process.env.DYNAMODB_TABLE,
-		Item: {
-			itemId: generateId(),
-			itemName: body.itemName,
-			purchased: false,
-			createdAt: timestamp,
-			updatedAt: timestamp,
-		},
-		ReturnValues: "ALL_OLD",
+	const data = {
+		...JSON.parse(event.body),
+		_id: generateId(),
+		createdAt: timestamp,
+		updatedAt: timestamp,
 	};
 	try {
-		const data = await client.put(params).promise();
-		console.log(data);
-		const response = new Response(200, JSON.stringify(params.Item));
-		return response;
+		const item = await db.write(data, TableName);
+		if (!item) {
+			return Responses._400({ message: "Could not create item" });
+		} else {
+			return Responses._201({ message: "Item created", data: item });
+		}
 	} catch (error) {
-		console.error("Error in create", error);
-		return new Response(500, error.message);
+		console.error(error);
+		return Responses._500({ message: "Internal Server Error!" });
 	}
 };
