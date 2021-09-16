@@ -1,28 +1,31 @@
 {
-  "name": "shopping-list-api",
-  "version": "1.0.0",
-  "description": "Simple serverless REST API using AWS Lambda, DynamoDB, API Gateway and Serverless framework.",
-  "main": "index.js",
-  "dependencies": {
-    "uuid": "^8.3.2"
-  },
-  "devDependencies": {
-    "aws-sdk": "^2.989.0",
-    "serverless-webpack": "^5.5.4",
-    "webpack": "^5.52.1"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/subhasis020299/shopping-list-api.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/subhasis020299/shopping-list-api/issues"
-  },
-  "homepage": "https://github.com/subhasis020299/shopping-list-api#readme"
+	"name": "shopping-list-api",
+	"version": "1.0.0",
+	"description": "Simple serverless REST API using AWS Lambda, DynamoDB, API Gateway and Serverless framework.",
+	"main": "index.js",
+	"dependencies": {
+		"uuid": "^8.3.2"
+	},
+	"devDependencies": {
+		"aws-sdk": "^2.989.0",
+		"serverless-dynamodb-local": "^0.2.40",
+		"serverless-offline": "^8.2.0",
+		"serverless-webpack": "^5.5.4",
+		"webpack": "^5.52.1"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"dev": "serverless offline start --location . --stage dev"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/subhasis020299/shopping-list-api.git"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/subhasis020299/shopping-list-api/issues"
+	},
+	"homepage": "https://github.com/subhasis020299/shopping-list-api#readme"
 }

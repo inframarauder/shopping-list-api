@@ -1,0 +1,29 @@
+{
+	"Table": {
+		"TableName": "shopping-list-api-prod",
+		"KeySchema": [
+			{
+				"AttributeName": "_id",
+				"KeyType": "HASH"
+			},
+			{
+				"AttributeName": "createdAt",
+				"KeyType": "RANGE"
+			}
+		],
+		"AttributeDefinitions": [
+			{
+				"AttributeName": "_id",
+				"AttributeType": "S"
+			},
+			{
+				"AttributeName": "createdAt",
+				"AttributeType": "S"
+			}
+		],
+		"ProvisionedThroughput": {
+			"ReadCapacityUnits": 1,
+			"WriteCapacityUnits": 1
+		}
+	}
+}

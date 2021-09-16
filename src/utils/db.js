@@ -4,7 +4,16 @@ AWS.config.update({
 	region: process.env.REGION || "ap-south-1",
 });
 
-const client = new AWS.DynamoDB.DocumentClient();
+let options = {};
+
+if (process.env.IS_OFFLINE) {
+	options = {
+		region: "localhost",
+		endpoint: "http://localhost:8000",
+	};
+}
+
+const client = new AWS.DynamoDB.DocumentClient(options);
 
 module.exports = {
 	async list(TableName) {
