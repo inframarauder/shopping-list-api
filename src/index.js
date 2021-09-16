@@ -1,6 +1,5 @@
-const Response = require("./utils/response");
+const Responses = require("./utils/responses");
 
 exports.handler = async (event) => {
-	const response = new Response();
-	return response;
+	return Responses._200({ message: "API Healthy!" });
 };
