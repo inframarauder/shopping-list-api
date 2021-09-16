@@ -3,7 +3,7 @@ const Responses = require("./utils/responses");
 const db = require("./utils/db");
 
 const TableName = process.env.DYNAMODB_TABLE;
-const timestamp = new Date().toISOString();
+const timestamp = new Date().getTime().toString();
 
 exports.handler = async (event) => {
 	const data = {

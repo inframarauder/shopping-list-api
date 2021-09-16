@@ -5,14 +5,16 @@ const TableName = process.env.DYNAMODB_TABLE;
 
 exports.handler = async (event) => {
 	try {
+		console.log(event.queryStringParameters);
+
 		let data = await db.list(TableName);
 
 		//sort data in descending order of createdAt
 		data = data.sort((a, b) => {
-			let aDate = new Date(a.createdAt);
-			let bDate = new Date(b.createdAt);
+			let aDate = Number(a.createdAt);
+			let bDate = Number(b.createdAt);
 
-			return bDate.getTime() - aDate.getTime();
+			return bDate - aDate;
 		});
 
 		return Responses._200({ message: "List of items", data });
