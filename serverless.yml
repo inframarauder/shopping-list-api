@@ -10,7 +10,7 @@ provider:
   region: ap-south-1
   environment:
     DYNAMODB_TABLE: ${self:service}-${sls:stage}
-    REGION: ${sls:region}
+    REGION: ${aws:region}
   http:
     cors: true
   iam:
