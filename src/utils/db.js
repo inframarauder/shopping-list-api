@@ -14,7 +14,10 @@ module.exports = {
 		}
 		const params = {
 			TableName,
-			ProjectionExpression: "_id, itemName, purchased",
+			ProjectionExpression: "#id, itemName, purchased",
+			ExpressionAttributeNames: {
+				"#id": "_id",
+			},
 		};
 
 		const allItems = [];
