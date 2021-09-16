@@ -17,10 +17,10 @@ exports.handler = async (event) => {
 			createdAt: timestamp,
 			updatedAt: timestamp,
 		},
-		ReturnValues: "ALL_NEW",
 	};
 	try {
-		await client.put(params);
+		const data = await client.put(params).promise();
+		console.log(data);
 		const response = new Response(200, JSON.stringify(params.Item));
 		return response;
 	} catch (error) {
