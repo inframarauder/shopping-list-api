@@ -1,4 +1,4 @@
-const generateId = require("./utils/generateId");
+const uuid = require("uuid");
 const Responses = require("./utils/responses");
 const db = require("./utils/db");
 
@@ -8,7 +8,8 @@ const timestamp = new Date().toISOString();
 exports.handler = async (event) => {
 	const data = {
 		...JSON.parse(event.body),
-		_id: generateId(),
+		purchased: false,
+		_id: uuid.v4(),
 		createdAt: timestamp,
 		updatedAt: timestamp,
 	};

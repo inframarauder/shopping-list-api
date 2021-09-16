@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "Simple serverless REST API using AWS Lambda, DynamoDB, API Gateway and Serverless framework.",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "uuid": "^8.3.2"
+  },
   "devDependencies": {
     "aws-sdk": "^2.989.0",
     "serverless-webpack": "^5.5.4",
