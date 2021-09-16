@@ -64,6 +64,12 @@ functions:
       - http:
           path: /create
           method: post
+  read:
+    handler: src/read.handler
+    events:
+      - http:
+          path: /read/{id}
+          method: get
 
 resources:
   Resources:
@@ -74,13 +80,9 @@ resources:
         AttributeDefinitions:
           - AttributeName: _id
             AttributeType: S
-          - AttributeName: createdAt
-            AttributeType: S
         KeySchema:
           - AttributeName: _id
             KeyType: HASH
-          - AttributeName: createdAt
-            KeyType: RANGE
 
         BillingMode: PAY_PER_REQUEST
         TableName: ${self:provider.environment.DYNAMODB_TABLE}

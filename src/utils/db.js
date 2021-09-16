@@ -1,4 +1,5 @@
 const AWS = require("aws-sdk");
+const { read } = require("fs");
 
 AWS.config.update({
 	region: process.env.REGION || "ap-south-1",
@@ -73,5 +74,25 @@ module.exports = {
 			);
 		}
 		return data;
+	},
+	async read(_id, TableName) {
+		if (!_id) {
+			throw new Error("_id is required");
+		}
+		if (!TableName) {
+			throw new Error("TableName is required");
+		}
+		const params = {
+			TableName,
+			Key: {
+				_id: _id,
+			},
+		};
+		const response = await client.get(params).promise();
+		if (!response) {
+			throw new Error(`Failed to retrieve record with _id ${_id}`);
+		}
+
+		return response.Item;
 	},
 };
