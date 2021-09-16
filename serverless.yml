@@ -8,6 +8,10 @@ provider:
   lambdaHashingVersion: 20201221
   stage: prod
   region: ap-south-1
+  package:
+    exclude:
+      - node_modules/**
+      - "!node_modules/uuid/**"
   environment:
     DYNAMODB_TABLE: ${self:service}-${sls:stage}
     REGION: ${aws:region}

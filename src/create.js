@@ -19,9 +19,10 @@ exports.handler = async (event) => {
 	try {
 		const data = await client.put(params);
 		const serializedData = JSON.parse(data.Attributes);
+		console.log(serializedData);
 		return new Response(200, JSON.stringify(serializedData));
 	} catch (error) {
 		console.error("Error in create", error);
-		return new Response(500, error);
+		return new Response(500, error.message);
 	}
 };
