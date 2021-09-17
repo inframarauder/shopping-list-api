@@ -70,6 +70,12 @@ functions:
       - http:
           path: /read/{id}
           method: get
+  update:
+    handler: src/update.handler
+    events:
+      - http:
+        path: /update/{id}
+        method: put
 
 resources:
   Resources:

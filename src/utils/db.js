@@ -1,5 +1,4 @@
 const AWS = require("aws-sdk");
-const { read } = require("fs");
 
 AWS.config.update({
 	region: process.env.REGION || "ap-south-1",
@@ -94,5 +93,39 @@ module.exports = {
 		}
 
 		return response.Item;
+	},
+	async update(_id, data, TableName) {
+		if (!_id) {
+			throw new Error("_id is required");
+		}
+		if (!data) {
+			throw new Error("data is required");
+		}
+		if (!TableName) {
+			throw new Error("TableName is required");
+		}
+		const params = {
+			TableName,
+			Key: {
+				_id,
+			},
+			UpdateExpression: "set #itemName= :itemName,  #purchased = :purchased",
+			ExpressionAttributeNames: {
+				"#itemName": "itemName",
+				"#purchased": "purchased",
+			},
+			ExpressionAttributeValues: {
+				":itemName": data.itemName,
+				":purchased": data.purchased,
+			},
+			ReturnValues: "ALL_NEW",
+		};
+
+		const response = await client.update(params).promise();
+		console.log(response);
+		if (!response) {
+			throw new Error(`Failed to update record with _id ${_id}`);
+		}
+		return { _id, ...data };
 	},
 };
