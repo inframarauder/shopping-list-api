@@ -104,20 +104,27 @@ module.exports = {
 		if (!TableName) {
 			throw new Error("TableName is required");
 		}
+		let UpdateExpression = "set ";
+		let ExpressionAttributeNames = {};
+		let ExpressionAttributeValues = {};
+
+		Object.keys(data).forEach((key, index) => {
+			UpdateExpression += `#${key}= :${key}`;
+			if (index < Object.keys(data).length - 1) {
+				UpdateExpression += ",";
+			}
+			ExpressionAttributeNames[`#${key}`] = key;
+			ExpressionAttributeValues[`:${key}`] = data[key];
+		});
+
 		const params = {
 			TableName,
 			Key: {
 				_id,
 			},
-			UpdateExpression: "set #itemName= :itemName,  #purchased = :purchased",
-			ExpressionAttributeNames: {
-				"#itemName": "itemName",
-				"#purchased": "purchased",
-			},
-			ExpressionAttributeValues: {
-				":itemName": data.itemName,
-				":purchased": data.purchased,
-			},
+			UpdateExpression,
+			ExpressionAttributeNames,
+			ExpressionAttributeValues,
 			ReturnValues: "ALL_NEW",
 		};
 
@@ -126,6 +133,6 @@ module.exports = {
 		if (!response) {
 			throw new Error(`Failed to update record with _id ${_id}`);
 		}
-		return { _id, ...data };
+		return response.Attributes;
 	},
 };

@@ -3,7 +3,7 @@ const db = require("./utils/db");
 
 const TableName = process.env.DYNAMODB_TABLE;
 
-exports.default = async (event) => {
+exports.handler = async (event) => {
 	const { id } = event.pathParameters;
 	const body = JSON.parse(event.body);
 
@@ -11,7 +11,11 @@ exports.default = async (event) => {
 		return Responses._400({ message: "_id is missing!" });
 	}
 
-	if (body?.purchased) {
+	if (!body || Object.keys(body).length === 0) {
+		return Responses._400({ message: "body is missing!" });
+	}
+
+	if (body.purchased) {
 		body.purchased = body.purchased === "false" ? false : true;
 	}
 

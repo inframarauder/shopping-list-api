@@ -74,8 +74,8 @@ functions:
     handler: src/update.handler
     events:
       - http:
-        path: /update/{id}
-        method: put
+          path: /update/{id}
+          method: put
 
 resources:
   Resources:
