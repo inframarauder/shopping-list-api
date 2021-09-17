@@ -3,9 +3,9 @@ const Responses = require("./utils/responses");
 const db = require("./utils/db");
 
 const TableName = process.env.DYNAMODB_TABLE;
-const timestamp = new Date().getTime().toString();
 
 exports.handler = async (event) => {
+	const timestamp = new Date().getTime().toString();
 	const data = {
 		...JSON.parse(event.body),
 		purchased: false,
