@@ -76,6 +76,12 @@ functions:
       - http:
           path: /update/{id}
           method: put
+  delete:
+    handler: src/delete.handler
+    events:
+      - http:
+          path: /delete/{id}
+          method: delete
 
 resources:
   Resources:

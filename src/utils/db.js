@@ -129,10 +129,30 @@ module.exports = {
 		};
 
 		const response = await client.update(params).promise();
-		console.log(response);
 		if (!response) {
 			throw new Error(`Failed to update record with _id ${_id}`);
 		}
 		return response.Attributes;
+	},
+
+	async delete(_id, TableName) {
+		if (!_id) {
+			throw new Error("_id is required");
+		}
+		if (!TableName) {
+			throw new Error("TableName is required");
+		}
+		const params = {
+			TableName,
+			Key: {
+				_id,
+			},
+		};
+
+		const response = await client.delete(params).promise();
+		if (!response) {
+			throw new Error(`Failed to delete record with _id ${_id}`);
+		}
+		return true;
 	},
 };

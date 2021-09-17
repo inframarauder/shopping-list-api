@@ -17,6 +17,7 @@ exports.handler = async (event) => {
 			return bDate - aDate;
 		});
 
+		//filter data based on query string params
 		if (queryStringParameters) {
 			data = data.filter((item) => {
 				let condition = true;
@@ -24,12 +25,14 @@ exports.handler = async (event) => {
 				if (queryStringParameters.itemName) {
 					condition =
 						condition &&
-						item.itemName.toLowerCase() ===
-							queryStringParameters.itemName.toLowerCase();
+						item.itemName
+							.toLowerCase()
+							.includes(queryStringParameters.itemName.toLowerCase());
 				}
 
 				if (queryStringParameters.purchased) {
-					queryStringParameters.purchased = "false" ? false : true;
+					queryStringParameters.purchased =
+						queryStringParameters.purchased === "false" ? false : true;
 					condition =
 						condition && item.purchased === queryStringParameters.purchased;
 				}
@@ -38,7 +41,7 @@ exports.handler = async (event) => {
 			});
 		}
 
-		return Responses._200({ message: "List of items", data });
+		return Responses._200({ message: `${data.length} item(s) found`, data });
 	} catch (error) {
 		console.error("Error in listing items", error);
 		return Responses._500({ message: "Internal Server Error!" });
