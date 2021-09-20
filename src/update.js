@@ -15,7 +15,7 @@ exports.handler = async (event) => {
 		return Responses._400({ message: "body is missing!" });
 	}
 
-	if (body.purchased) {
+	if (body.purchased && typeof body.purchased !== "boolean") {
 		body.purchased = body.purchased === "false" ? false : true;
 	}
 
