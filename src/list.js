@@ -30,9 +30,11 @@ exports.handler = async (event) => {
 							.includes(queryStringParameters.itemName.toLowerCase());
 				}
 
-				if (queryStringParameters.purchased) {
-					queryStringParameters.purchased =
-						queryStringParameters.purchased === "false" ? false : true;
+				if (queryStringParameters.hasOwnProperty("purchased")) {
+					if (typeof queryStringParameters.purchased !== "boolean") {
+						queryStringParameters.purchased =
+							queryStringParameters.purchased === "false" ? false : true;
+					}
 					condition =
 						condition && item.purchased === queryStringParameters.purchased;
 				}
