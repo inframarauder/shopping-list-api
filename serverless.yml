@@ -52,36 +52,42 @@ functions:
       - http:
           path: /
           method: get
+          cors: true
   list:
     handler: src/list.handler
     events:
       - http:
           path: /list
           method: get
+          cors: true
   create:
     handler: src/create.handler
     events:
       - http:
           path: /create
           method: post
+          cors: true
   read:
     handler: src/read.handler
     events:
       - http:
           path: /read/{id}
           method: get
+          cors: true
   update:
     handler: src/update.handler
     events:
       - http:
           path: /update/{id}
           method: put
+          cors: true
   delete:
     handler: src/delete.handler
     events:
       - http:
           path: /delete/{id}
           method: delete
+          cors: true
 
 resources:
   Resources:
